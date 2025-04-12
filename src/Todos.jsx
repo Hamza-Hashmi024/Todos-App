@@ -1,8 +1,11 @@
 import { useState } from "react";
+import { GrTasks } from "react-icons/gr";
 
 export const Todos = () => {
   const [inputValue, setInputValue] = useState("");
   const [task ,  setTask] = useState([]);
+  const [date ,  setDate] = useState("");
+
 
 
   const handleInputChange = (value) => {
@@ -16,15 +19,25 @@ export const Todos = () => {
    e.preventDefault();
   if(!inputValue) return; // Prevent empty tasks
   setTask((prevTask ) => [...prevTask , inputValue]);
-
    setInputValue("");
-   
 }
+
+
+
+setInterval(()=>{
+    const now = new Date();
+    const formatedDate  = now.toLocaleDateString();
+    const formatedTime = now.toLocaleTimeString();
+    setDate(`${formatedDate} - ${formatedTime}`);
+})
 
   return (
     <>
       <section className="">
-        <header>Todos App</header>
+        <header>
+             <h1> Todos App</h1>
+             <h2>  Date {date} - Time  </h2>
+        </header>
       </section>
       <section>
         <form onSubmit={handleSubmit}>
@@ -48,8 +61,10 @@ export const Todos = () => {
             {task.map((item , index) =>{
                 return(
                     <li key={index} >
-                        {item}
-                    </li>
+                   <GrTasks />  {item}
+                        <button>  Delete  </button>;
+                        <button> Edit</button>
+                         </li>
                 )
             })}
         </ul>
