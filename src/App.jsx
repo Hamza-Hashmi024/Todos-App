@@ -5,7 +5,9 @@ function App() {
 
   return (
   <>
-  <Todos/>
+  <div className="bg-black text-white h-screen flex flex-col items-center justify-center">
+  <Todos />
+  </div>
   </>
   )
 }

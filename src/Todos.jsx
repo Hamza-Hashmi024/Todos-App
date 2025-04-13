@@ -1,16 +1,13 @@
 import { useEffect, useState } from "react";
 import { GrTasks } from "react-icons/gr";
+import  TodoForm  from "./Components/Todos/TodoForm";
 
 export const Todos = () => {
-  const [inputValue, setInputValue] = useState("");
+
   const [task ,  setTask] = useState([]);
   const [date ,  setDate] = useState("");
 
 
-
-  const handleInputChange = (value) => {
-    setInputValue(value);
-  };
 
 
     const handleDelete = (value) =>{
@@ -19,13 +16,15 @@ export const Todos = () => {
     }
 
 
-  const handleSubmit = (e) => {
-   e.preventDefault();
-  if(!inputValue) return; // Prevent empty tasks
-  setTask((prevTask ) => [...prevTask , inputValue]);
-   setInputValue("");
+
+
+const handleDeleteAll = () =>{
+    setTask([]);
 }
 
+
+
+  // Update date and time every second
 useEffect(()=>{
 
     const interval =  setInterval(()=>{
@@ -40,42 +39,31 @@ useEffect(()=>{
 
   return (
     <>
-      <section className="">
+      <section className="bg-[#008080] p-6 rounded-b-md"  >
         <header>
-             <h1> Todos App</h1>
-             <h2>  Date {date} - Time  </h2>
+             <h1 className="text-center mb-2 text-[#DDDBCB]"> <b> Todos App</b>  </h1>
+             <h2 className="text-center mb-2 text-[#DDDBCB]" >  Date : {date} </h2>
         </header>
       </section>
       <section>
-        <form onSubmit={handleSubmit}>
-          <div>
-            <input
-              type="text"
-              placeholder="Enter your task"
-              autoComplete="off"
-              value={inputValue}
-              onChange={(e) => setInputValue(e.target.value)}
-            />
-          </div>
-          <div>
-            <button type="submit">Add Task</button>
-          </div>
-        </form>
+      <TodoForm setTask={setTask} /> 
       </section>
-
+       
       <section>
         <ul>
             {task.map((item , index) =>{
                 return(
                     <li key={index} >
                    <GrTasks />  {item}
-                        <button  onClick={()=> handleDelete(item)}  >  Delete  </button>;
+                        <button  onClick={()=> handleDelete(item)}  >  Delete  </button>
                         
                         <button> Edit</button>
                          </li>
-                )
+
+                            )
             })}
         </ul>
+        <button className="" onClick={handleDeleteAll} >Delete All</button>
 
       </section>
     </>
