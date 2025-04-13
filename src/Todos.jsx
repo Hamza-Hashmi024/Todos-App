@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import { GrTasks } from "react-icons/gr";
 import TodoForm from "./Components/Todos/TodoForm";
 import DelleteAllButton from "./Button/DeleteAllButton";
+import EditButton from "./Button/EditButton";
+import  DeleteButton  from "./Button/DeleteButton";
 
 export const Todos = () => {
   const [task, setTask] = useState([]);
@@ -52,20 +54,19 @@ export const Todos = () => {
               <div className="flex items-center gap-2 text-[#DDDBCB]">
                 <GrTasks />
                 <span className="text-base font-semibold">{item}</span>
+
+
               </div>
 
+
+
+              
               <div className="flex gap-2">
-                <button
+                 <DeleteButton
                   onClick={() => handleDelete(item)}
-                  className="text-white bg-red-600 hover:bg-red-700 focus:ring-2 focus:ring-red-400 font-medium rounded-md text-xs px-4 py-1.5"
-                >
-                  Delete
-                </button>
-                <button
-                  className="text-gray-900 bg-white border border-gray-300 hover:bg-gray-100 focus:ring-2 focus:ring-gray-300 font-medium rounded-md text-xs px-4 py-1.5"
-                >
-                  Edit
-                </button>
+                  children="Delete"/>
+                <EditButton />
+               
               </div>
             </li>
           ))}
