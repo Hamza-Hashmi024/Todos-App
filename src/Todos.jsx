@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { GrTasks } from "react-icons/gr";
 import TodoForm from "./Components/Todos/TodoForm";
+import DelleteAllButton from "./Button/DeleteAllButton";
 
 export const Todos = () => {
   const [task, setTask] = useState([]);
@@ -72,12 +73,7 @@ export const Todos = () => {
 
         {task.length > 0 && (
           <div className="flex justify-center">
-            <button
-              onClick={handleDeleteAll}
-              className="text-white bg-red-600 hover:bg-red-700 focus:ring-2 focus:ring-red-400 font-medium rounded-md text-sm px-6 py-2"
-            >
-              Delete All
-            </button>
+            <DelleteAllButton onClick={handleDeleteAll} children="Delete All" /> 
           </div>
         )}
       </section>

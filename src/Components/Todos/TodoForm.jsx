@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Todos } from "../../Todos";
+import AddTaskButton from "../../Button/AddTaskButton";
 
 const TodoForm = ({ setTask }) => {
   const [inputValue, setInputValue] = useState("");
@@ -24,12 +25,7 @@ const TodoForm = ({ setTask }) => {
             onChange={(e) => setInputValue(e.target.value)}
           />
 
-          <button
-            type="submit"
-            className="text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-4 focus:ring-indigo-300 font-medium rounded-lg text-sm px-5 py-2.5 transition-all duration-200"
-          >
-            Add Task
-          </button>
+         <AddTaskButton type="submit" children="Add Task" />
         </div>
       </form>
     </>
